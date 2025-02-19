@@ -1,22 +1,7 @@
-
 import java.util.Scanner;
 
-public class StringCalculator {
-
-    public static String processExpression(String expression) {
-        // Убираем пробелы
-        expression = expression.replace(" ", "");
 public class Main {
 
-        // Проверка на операцию сложения строк
-        if (expression.contains("+")) {
-            String[] parts = expression.split("\\+");
-            if (parts.length == 2 && isValidString(parts[0]) && isValidString(parts[1])) {
-                // Убираем кавычки и выполняем сложение
-                return parts[0].substring(1, parts[0].length() - 1) + parts[1].substring(1, parts[1].length() - 1);
-            } else {
-                throw new IllegalArgumentException("Некорректный формат для операции сложения.");
-            }
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Input: ");
@@ -31,15 +16,6 @@ public class Main {
         }
     }
 
-        // Проверка на операцию вычитания строк
-        else if (expression.contains("-")) {
-            String[] parts = expression.split("-");
-            if (parts.length == 2 && isValidString(parts[0]) && isValidString(parts[1])) {
-                // Убираем кавычки и выполняем вычитание
-                return parts[0].substring(1, parts[0].length() - 1).replace(parts[1].substring(1, parts[1].length() - 1), "");
-            } else {
-                throw new IllegalArgumentException("Некорректный формат для операции вычитания.");
-            }
     public static String calc(String input) throws Exception {
         String[] parts = input.split(" ");
         if (parts.length != 3) {
@@ -47,7 +23,6 @@ public class Main {
         }
 
         // Проверка на операцию умножения строки на число
-        else if (expression.contains("*")) {
             String[] parts = expression.split("\\*");
             if (parts.length == 2 && isValidString(parts[0]) && isValidNumber(parts[1])) {
                 // Убираем кавычки и выполняем умножение
@@ -62,7 +37,6 @@ public class Main {
         String operator = parts[1];
         String num2 = parts[2];
 
-        // Проверка на операцию деления строки на число
         else if (expression.contains("/")) {
             String[] parts = expression.split("/");
             if (parts.length == 2 && isValidString(parts[0]) && isValidNumber(parts[1])) {
@@ -80,7 +54,6 @@ public class Main {
         boolean isRoman = isRoman(num1) && isRoman(num2);
         boolean isArabic = isArabic(num1) && isArabic(num2);
 
-        // Если операция не поддерживается
         else {
             throw new IllegalArgumentException("Недопустимая операция.");
         if (isRoman) {
@@ -101,7 +74,6 @@ public class Main {
         }
     }
 
-    // Проверка, является ли строка корректной
     private static boolean isValidString(String str) {
         return str.startsWith("\"") && str.endsWith("\"") && str.length() <= 12;
     private static boolean isRoman(String num) {
@@ -113,11 +85,9 @@ public class Main {
         }
     }
 
-    // Проверка, является ли строка корректным числом от 1 до 10
     private static boolean isValidNumber(String str) {
     private static boolean isArabic(String num) {
         try {
-            int num = Integer.parseInt(str);
             return num >= 1 && num <= 10;
             int value = Integer.parseInt(num);
             return value >= 1 && value <= 10;
@@ -126,7 +96,6 @@ public class Main {
         }
     }
 
-    // Функция для обрезки строки до 40 символов
     private static String truncateIfNecessary(String result) {
         if (result.length() > 40) {
             return result.substring(0, 40) + "...";
@@ -144,7 +113,6 @@ public class Main {
             case "X": return 10;
             default: throw new Exception();
         }
-        return result;
     }
 
     public static void main(String[] args) {
@@ -182,4 +150,4 @@ public class Main {
             default: throw new Exception();
         }
     }
-}}
+}
