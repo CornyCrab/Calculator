@@ -22,40 +22,15 @@ public class Main {
             throw new Exception();
         }
 
-        // Проверка на операцию умножения строки на число
-            String[] parts = expression.split("\\*");
-            if (parts.length == 2 && isValidString(parts[0]) && isValidNumber(parts[1])) {
-                // Убираем кавычки и выполняем умножение
-                int times = Integer.parseInt(parts[1]);
-                String str = parts[0].substring(1, parts[0].length() - 1);
-                return str.repeat(times);
-            } else {
-                throw new IllegalArgumentException("Некорректный формат для умножения строки на число.");
-            }
         }
         String num1 = parts[0];
         String operator = parts[1];
         String num2 = parts[2];
 
-        else if (expression.contains("/")) {
-            String[] parts = expression.split("/");
-            if (parts.length == 2 && isValidString(parts[0]) && isValidNumber(parts[1])) {
-                // Убираем кавычки и выполняем деление
-                int divisor = Integer.parseInt(parts[1]);
-                if (divisor <= 0) {
-                    throw new IllegalArgumentException("Число для деления должно быть больше 0.");
-                }
-                String str = parts[0].substring(1, parts[0].length() - 1);
-                return str.length() > divisor ? str.substring(0, str.length() / divisor) : str;
-            } else {
-                throw new IllegalArgumentException("Некорректный формат для деления строки на число.");
-            }
         }
         boolean isRoman = isRoman(num1) && isRoman(num2);
         boolean isArabic = isArabic(num1) && isArabic(num2);
 
-        else {
-            throw new IllegalArgumentException("Недопустимая операция.");
         if (isRoman) {
             int intNum1 = romanToArabic(num1);
             int intNum2 = romanToArabic(num2);
@@ -74,8 +49,6 @@ public class Main {
         }
     }
 
-    private static boolean isValidString(String str) {
-        return str.startsWith("\"") && str.endsWith("\"") && str.length() <= 12;
     private static boolean isRoman(String num) {
         try {
             romanToArabic(num);
@@ -85,10 +58,8 @@ public class Main {
         }
     }
 
-    private static boolean isValidNumber(String str) {
     private static boolean isArabic(String num) {
         try {
-            return num >= 1 && num <= 10;
             int value = Integer.parseInt(num);
             return value >= 1 && value <= 10;
         } catch (NumberFormatException e) {
@@ -96,9 +67,6 @@ public class Main {
         }
     }
 
-    private static String truncateIfNecessary(String result) {
-        if (result.length() > 40) {
-            return result.substring(0, 40) + "...";
     private static int romanToArabic(String roman) throws Exception {
         switch (roman) {
             case "I": return 1;
@@ -115,11 +83,6 @@ public class Main {
         }
     }
 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите выражение (например, \"100\" + \"500\"): ");
-        String input = scanner.nextLine();
-
     private static String arabicToRoman(int number) {
         if (number < 1) {
             throw new IllegalArgumentException("Римские числа не могут быть меньше 1");
@@ -134,7 +97,6 @@ public class Main {
         return roman[number];
     }
 
-        try {
             String result = processExpression(input);
             // Обрезаем результат, если нужно
             result = truncateIfNecessary(result);
