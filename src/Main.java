@@ -22,12 +22,10 @@ public class Main {
             throw new Exception();
         }
 
-        }
         String num1 = parts[0];
         String operator = parts[1];
         String num2 = parts[2];
 
-        }
         boolean isRoman = isRoman(num1) && isRoman(num2);
         boolean isArabic = isArabic(num1) && isArabic(num2);
 
@@ -97,12 +95,6 @@ public class Main {
         return roman[number];
     }
 
-            String result = processExpression(input);
-            // Обрезаем результат, если нужно
-            result = truncateIfNecessary(result);
-            System.out.println("Результат: \"" + result + "\"");
-        } catch (Exception e) {
-            System.out.println("Ошибка: " + e.getMessage());
     private static int calculate(int num1, int num2, String operator) throws Exception {
         switch (operator) {
             case "+": return num1 + num2;
